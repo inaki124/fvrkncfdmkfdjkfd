@@ -1,0 +1,65 @@
+<html>
+<head>  
+<link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript">
+    </script>
+
+</head>
+<body class="body_backgorund">
+
+
+
+<div align="center">
+<h1>Pintura</h1>
+
+    <canvas id="coca-cola" width="800" height="600"></canvas>
+        <br><br >
+
+<!--Additional activity -->
+
+    </div>
+<script>
+
+   var lastpositionpequis, lastpositionY;
+   var mouseEvent="empty";
+   canvas=document.getElementById("coca-cola"); 
+
+   ctx=canvas.getContext("2d");
+   color="purple";
+   width_of_line=3  ;
+
+ canvas.addEventListener("mousedown",mymousedown);
+  function mymousedown(e){
+    mouseEvent="mouseDown";
+  }
+  canvas.addEventListener("mouseleave",mymouseleave);
+  function mymouseleave(e){
+    mouseEvent="mouseLeave";
+  }
+  canvas.addEventListener("mouseup",mouseup);
+  function mouseup (e){
+    mouseEvent="mouseUp";
+  }
+  canvas.addEventListener("mousemove",carlitos);
+  function carlitos (e){
+    current_position_of_mouse_X=e.clientX - canvas.offsetLeft;
+    current_position_of_mouse_Y=e.clientY - canvas.offsetTop;
+    if (mouseEvent=="mouseDown"){
+        ctx.beginPath(); 
+        ctx.strokeStyle = color; 
+        ctx.lineWidth = width_of_line; 
+        console.log("ultima pozicion de las coordenadas X e Y");
+        console.log("X="+lastpositionpequis+"Y="+lastpositionY);
+        ctx.moveTo(lastpositionpequis,lastpositionY);
+        console.log("posicion actual de las las coordenadas X e Y");
+        console.log("X="+current_position_of_mouse_X+"Y="+current_position_of_mouse_Y);
+        ctx.lineTo(current_position_of_mouse_X,current_position_of_mouse_Y);
+        ctx.stroke();
+    }
+    lastpositionpequis=current_position_of_mouse_X;
+    lastpositionY=current_position_of_mouse_Y;
+  }
+</script>
+</body>
+</html>
